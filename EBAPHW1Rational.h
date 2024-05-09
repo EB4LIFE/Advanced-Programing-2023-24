@@ -17,6 +17,16 @@ public:
     // contain the following output : print: in constructor
     Rational(int num = 0, int den = 1) : numerator(num), denominator(den) {
         cout << "print: in constructor" << endl;
+          if (den == 0) {
+            denominator = 1;
+        }
+        else {
+            denominator = den;
+        }
+        if (denominator < 0) {
+            numerator = -numerator;
+            denominator = -denominator;
+        }
     }
     //copy constructor
     Rational(const Rational& other) : numerator(other.numerator), denominator(other.denominator) {
@@ -50,11 +60,11 @@ public:
     //print rational
     // Method to print the rational number
     void print() const {
-        cout << numerator << "/" << denominator << endl;
+        cout << numerator << "/" << denominator;
     }
     //equal
     // Method to check equality
-    bool equal(const Rational& other) const {
+    bool equal(const Rational other) const {
         return numerator == other.numerator && denominator == other.denominator;
     }
     //make equals
@@ -74,7 +84,7 @@ public:
         }
     }
     //add rational
-    Rational add(const Rational& other) const {
+    Rational add(const Rational other) const {
         int num = numerator * other.denominator + other.numerator * denominator;
         int den = denominator * other.denominator;
         Rational sum(num, den);
@@ -84,8 +94,10 @@ public:
     //addone
     // Method to add one to the rational
     Rational addOne() const {
-        Rational one(1);
-        return add(one);
+        int num = numerator * 1 + 1 * denominator;
+        int den = denominator * 1;
+        Rational sum(num, den);
+        return sum;
     }
     //personal thing to make it work
 private:
