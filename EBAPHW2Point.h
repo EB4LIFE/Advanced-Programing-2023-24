@@ -1,6 +1,7 @@
 #pragma once
 #ifndef POINT_H
 #define POINT_H
+#<cmath>
 
 class Point {
 
@@ -9,20 +10,28 @@ private:
         int OGy;
 
 public:
+  //Constructor
+  Point() {
+
+}
 
  //setter methods
  void setX(int x)
 {
+  OGx = x;
 }
 void setY(int y)
 {
+ OGy = y;
 }
 //getter methods
 int getX()
 {
+return x;
 }
 int getY()
 {
+return y;
 }
 
 float distance(Point point)
@@ -33,5 +42,4 @@ float distance(Point point)
 }
 
 };
-
 #endif POINT_H
