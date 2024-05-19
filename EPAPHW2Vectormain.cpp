@@ -4,10 +4,10 @@
 using namespace std;
 #include"RoundVector.h"
 
-RoundVector input(int usercap) {
-    RoundVector rv(usercap);
-    cout << "Enter " << usercap << " numbers:" << endl;
-    for (int i = 0; i < usercap; ++i) {
+RoundVector input(int _capacity) {
+    RoundVector rv(_capacity);
+    cout << "Enter " << _capacity << " numbers:" << endl;
+    for (int i = 0; i < _capacity; ++i) {
         int num;
         cin >> num;
         rv.addNext(num);
