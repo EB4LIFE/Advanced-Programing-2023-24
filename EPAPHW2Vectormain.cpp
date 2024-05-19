@@ -3,6 +3,18 @@
 #include<iostream>
 using namespace std;
 #include"RoundVector.h"
+
+RoundVector input(int usercap) {
+    RoundVector rv(usercap);
+    cout << "Enter " << usercap << " numbers:" << endl;
+    for (int i = 0; i < usercap; ++i) {
+        int num;
+        cin >> num;
+        rv.addNext(num);
+    }
+    return move(rv);
+}
+
 enum OPTIONS { STOP, TEST1, TEST2, TEST3 };
 int main()
 {
