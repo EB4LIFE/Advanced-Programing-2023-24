@@ -6,7 +6,7 @@
 #include <iostream>
 using namespace std;
 
-class RoundVector() {
+class RoundVector {
   
 private:
   int capacity;
