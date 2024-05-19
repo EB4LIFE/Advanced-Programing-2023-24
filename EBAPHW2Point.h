@@ -3,63 +3,48 @@
 #pragma once
 #ifndef POINT_H
 #define POINT_H
-#include<cmath>
 #include <iostream>
+#include <cmath>
 using namespace std;
 
 class Point {
-
 private:
-        float OGx;
-        float OGy;
+    float x;
+    float y;
 
 public:
-  //Constructor
-  Point() {
-   OGx = 0; 
-   OGy = 0;
-}
- //assignment ctor
- Point(float x, float y ): OGx(x), OGy(y) {
-}
-//copy ctor
-Point (const Point& P) : OGx(P.OGx), OGy(P.OGy) {
+    // Default constructor
+    Point() : x(0), y(0) {}
 
-}
- //setter methods
- void setX(int x)
-{
-  OGx = x;
-}
+    // Assignment constructor
+    Point(float x, float y) : x(x), y(y) {}
 
-void setY(int y)
-{
- OGy = y;
-}
+    // Copy constructor
+    Point(const Point& p) : x(p.x), y(p.y) {}
 
-//getter methods
-float getX() const
-{
-return OGx;
-}
-float getY() const
-{
-return OGy;
-}
+    // Getter for x
+    float getX() const {
+        return x;
+    }
 
-float distance(const Point& P)
-//method to calculate distance between 
-//2 points (1 called and 1 passed)
-{
-    float distance;
-    float x1 = OGx;
-    float y1 = OGy;
-    float x2 = P.OGx;
-    float y2 = P.OGy;
-    distance = sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
-    return distance;
-}
+    // Getter for y
+    float getY() const {
+        return y;
+    }
 
+    // Setter for x
+    void setX(float x) {
+        this->x = x;
+    }
 
+    // Setter for y
+    void setY(float y) {
+        this->y = y;
+    }
+
+    // Method to calculate distance between two points
+    float distance(const Point& p) const {
+        return sqrt(pow(x - p.x, 2) + pow(y - p.y, 2));
+    }
 };
-#endif 
+#endif
