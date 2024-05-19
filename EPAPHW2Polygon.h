@@ -16,13 +16,15 @@ public:
 Polygon () {
  size = 0;
  pts = Nullptr;
- cout << “in default constructor”<< endl;
+ cout << “in default constructor” << endl;
 }
+
 //Assignment 
 Polygon (int size) : size(size) {
 pts = new Point[size];
 cout << "in one parameter constructor" << endl;
 }
+
 //Copy ctor 
 Polygon(const Polygon &other) : size(other.size) {
 
@@ -64,12 +66,9 @@ if (size < 2) {
 return 0; 
 //don't have 2 consec pts
 }
-//in a case where we do we must evaluate  
-//method is to sum up the distances 
-//between every two consecutive Points, 
-//assuming that the Points in the array 
-//are ordered according to the edges of 
-//the polygon
+//in a case where we do we must evaluate method is to sum up the distances 
+//between every two consecutive Points, assuming that the Points in the array 
+//are ordered according to the edges of the polygon
 float per = 0;
 for (int i = 0; i < size; ++i) 
 {
@@ -86,10 +85,8 @@ return false;
 //obviously because they are not the same 
 //if not the same size
 }
-//for loop to traverse polygon and copy 
-//poly to see if the points are the same
-//since orde of points don't matter this 
-//way, at place 1: it will check all point 
+//for loop to traverse polygon and copy poly to see if the points are the same
+//since orde of points don't matter this way, at place 1: it will check all point 
 //in j to see if they match and so on 
 for (int i = 0; i < size; ++i) 
 {
