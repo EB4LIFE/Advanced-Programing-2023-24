@@ -27,11 +27,11 @@ void setY(int y)
 //getter methods
 int getX()
 {
-return x;
+return OGx;
 }
 int getY()
 {
-return y;
+return OGy;
 }
 
 float distance(Point point)
