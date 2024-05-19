@@ -1,7 +1,7 @@
 #pragma once
 #ifndef POINT_H
 #define POINT_H
-#<cmath>
+#include<cmath>
 
 class Point {
 
