@@ -17,8 +17,8 @@ public:
 //Default - set to zero
 Polygon () {
  size = 0;
- pts = Nullptr;
- cout << “in default constructor” << endl;
+ pts = nullptr;
+ cout << "in default constructor" << endl;
 }
 
 //Assignment 
@@ -30,7 +30,7 @@ cout << "in one parameter constructor" << endl;
 //Copy ctor 
 Polygon(const Polygon &other) : size(other.size) {
 
-Point pts = new Point[size];
+Point* pts = new Point[size];
 //using for loop to copy
 for(int i = 0; i < size; ++i)
 {
@@ -57,7 +57,7 @@ void setPoint(const Point &p, int index) {
     Point* getPoints() const {
         Point *deepcopy = new Point[size];
         for (int i = 0; i < size; ++i) {
-            deepcopy[i] = points[i];
+            deepcopy[i] = pts[i];
         }
         return deepcopy;
     }
@@ -74,9 +74,9 @@ return 0;
 float per = 0;
 for (int i = 0; i < size; ++i) 
 {
-perim += pts[i].distance(pts[(i + 1) % size]);
+per += pts[i].distance(pts[(i + 1) % size]);
 }
-return perim;
+return per;
 } //end of method
 
 //isIdentical method
@@ -95,7 +95,7 @@ for (int i = 0; i < size; ++i)
 bool found = false;
 for (int j = 0; j < size; ++j) 
 {
-if (pts[i].getX() == other.pts[j].getX() && points[i].getY() == other.pts[j].getY()) {
+if (pts[i].getX() == other.pts[j].getX() && pts[i].getY() == other.pts[j].getY()) {
 found = true;
 break;
 }
@@ -106,4 +106,4 @@ return true;
 }
 
 }; 
-#endif POLYGON_H
+#endif 
