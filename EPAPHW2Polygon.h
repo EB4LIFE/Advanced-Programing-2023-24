@@ -1,109 +1,102 @@
 //Eitan Brown 
 //346816549
-#pragma once
 #ifndef POLYGON_H
 #define POLYGON_H
+
 #include "Point.h"
 #include <iostream>
+#include <cmath>
+
 using namespace std;
 
 class Polygon {
-
-private: 
-Point *pts;
-int size;
+private:
+    Point* points;
+    int numPoints;
 
 public:
-//Default - set to zero
-Polygon () {
- size = 0;
- pts = nullptr;
- cout << "in default constructor" << endl;
-}
+    // Default constructor
+    Polygon() : points(nullptr), numPoints(0) {
+        cout << "in default constructor" << endl;
+    }
 
-//Assignment 
-Polygon (int size) : size(size) {
-pts = new Point[size];
-cout << "in one parameter constructor" << endl;
-}
+    // Assignment constructor
+    Polygon(int numPoints) : numPoints(numPoints) {
+        cout << "in one parameter constructor" << endl;
+        points = new Point[numPoints];
+    }
 
-//Copy ctor 
-Polygon(const Polygon &other) : size(other.size) {
-
-Point* pts = new Point[size];
-//using for loop to copy
-for(int i = 0; i < size; ++i)
-{
- pts[i] = other.pts[i];
-}
- cout << "in copy constructor" << endl;
-}
-
-//destructor ctor for tracking out the trash after the main
-~Polygon () {
-   delete[] pts;
- cout << "in destructor" << endl;
-}
-
-// Setter for a specific point
-void setPoint(const Point &p, int index) {
-        if (index >= 0 && index < size) {
-            pts[index] = p;
+    // Copy constructor
+    Polygon(const Polygon& poly) : numPoints(poly.numPoints) {
+        cout << "in copy constructor" << endl;
+        points = new Point[numPoints];
+        for (int i = 0; i < numPoints; ++i) {
+            points[i] = poly.points[i];
         }
     }
 
-// Getters
-//for points array aka the deep copy using dynamic allocation 
+    // Destructor
+    ~Polygon() {
+        cout << "in destructor" << endl;
+        delete[] points;
+    }
+
+    // Getter for points array
     Point* getPoints() const {
-        Point *deepcopy = new Point[size];
-        for (int i = 0; i < size; ++i) {
-            deepcopy[i] = pts[i];
+        Point* newPoints = new Point[numPoints];
+        for (int i = 0; i < numPoints; ++i) {
+            newPoints[i] = points[i];
         }
-        return deepcopy;
+        return newPoints;
     }
 
-// Perimeter method
-float perimeter() const {
-if (size < 2) {
-return 0; 
-//don't have 2 consec pts
-}
-//in a case where we do we must evaluate method is to sum up the distances 
-//between every two consecutive Points, assuming that the Points in the array 
-//are ordered according to the edges of the polygon
-float per = 0;
-for (int i = 0; i < size; ++i) 
-{
-per += pts[i].distance(pts[(i + 1) % size]);
-}
-return per;
-} //end of method
+    // Getter for number of points
+    int getNumPoints() const {
+        return numPoints;
+    }
 
-//isIdentical method
-bool isIdentical(const Polygon &other) const {
-if (size != other.size) 
-{
-return false; 
-//obviously because they are not the same 
-//if not the same size
-}
-//for loop to traverse polygon and copy poly to see if the points are the same
-//since orde of points don't matter this way, at place 1: it will check all point 
-//in j to see if they match and so on 
-for (int i = 0; i < size; ++i) 
-{
-bool found = false;
-for (int j = 0; j < size; ++j) 
-{
-if (pts[i].getX() == other.pts[j].getX() && pts[i].getY() == other.pts[j].getY()) {
-found = true;
-break;
-}
-}
-if (!found) return false;
-}
-return true;
-}
+    // Method to set a point at a specific index
+    void setPoint(const Point& p, int index) {
+        if (index >= 0 && index < numPoints) {
+            points[index] = p;
+        } else {
+            cout << "ERROR" << endl;
+        }
+    }
 
-}; 
-#endif 
+    // Method to compute the perimeter of the polygon
+    float perimeter() const {
+        float perim = 0.0;
+        for (int i = 0; i < numPoints; ++i) {
+            perim += points[i].distance(points[(i + 1) % numPoints]);
+        }
+        return perim;
+    }
+
+    // Method to check if two polygons are identical
+    bool isIdentical(const Polygon& poly) const {
+        if (numPoints != poly.numPoints) {
+            return false;
+        }
+        // Checking if points are the same regardless of order
+        bool* matched = new bool[numPoints]();
+        for (int i = 0; i < numPoints; ++i) {
+            bool found = false;
+            for (int j = 0; j < numPoints; ++j) {
+                if (!matched[j] && points[i].getX() == poly.points[j].getX() && points[i].getY() == poly.points[j].getY()) {
+                    matched[j] = true;
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                delete[] matched;
+                return false;
+            }
+        }
+        delete[] matched;
+        return true;
+    }
+};
+
+#endif
