@@ -38,8 +38,17 @@ float distance(Point point)
 //method to calculate distance between 
 //2 points (1 called and 1 passed)
 {
+    float distance;
+    int x1 = OGx;
+ .  int y1 = OGy;
+    int x2 = point.
+    int y2 = point.
 
+
+      distance = sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
+    return distance;
 }
+
 
 };
 #endif POINT_H
