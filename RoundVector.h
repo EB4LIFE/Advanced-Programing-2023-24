@@ -6,7 +6,8 @@
 #include <iostream>
 using namespace std;
 
-class RoundVector () {
+class RoundVector() {
+  
 private:
   int capacity;
   //the maximum number of elements that can be stored in the array.
