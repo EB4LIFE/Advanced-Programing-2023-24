@@ -23,7 +23,7 @@ public:
   //constructor 
   RoundVector(int cap) : capacity(cap), head(0), tail (0) {
   vec = new int[capacity + 1];
-  cout << "in constructor” << endl;
+  cout << "in constructor" << endl;
     }
   //copy ctor
   RoundVector(const RoundVector& other) : capacity(other.capacity), head(0), tail (0) {
@@ -31,12 +31,12 @@ public:
   for (int i = 0; i < capacity; ++i) {
   addNext(other.vec[(other.head + i) % (capacity + 1)]);
   }
-  cout << "in copy constructor” << endl;
+  cout << "in copy constructor" << endl;
   }
   //move ctor
   RoundVector(RoundVector&& other) noexcept : capacity(other.capacity), vec(other.vec), head(other.head), tail(other.tail) {
   other.vec = nullptr;
-  cout << "in move constructor” << endl;
+  cout << "in move constructor" << endl;
   }
   //destructor
   ~RoundVector() {
