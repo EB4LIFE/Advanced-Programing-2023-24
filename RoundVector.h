@@ -30,7 +30,7 @@ public:
   RoundVector(const RoundVector& other) : capacity(other.capacity), head(0), tail (0) {
   vec = new int[capacity + 1];
   for (int i = 0; i < capacity; ++i) {
-  addNext(other.vec[(other.head + i) % (capacity + 1)]);
+  addNext(other.Vec[(other.head + i) % (capacity + 1)]);
   }
   cout << "in copy constructor" << endl;
   }
@@ -41,7 +41,7 @@ public:
   }
   //destructor
   ~RoundVector() {
-  delete[] vec;
+  delete[] Vec;
   cout << "in destructor" << endl;
   }
   //methods 
@@ -55,21 +55,21 @@ public:
     return;
     }
     //otherwise...
-    vec[tail] = value;
+    Vec[tail] = value;
     tail = (tail + 1) % (capacity + 1);
   }
 
 //a removal method that removes the head element as described 
 //above. The method is to return the removed element. 
 removeFirst() {
-  int value = vec[head];
+  int value = Vec[head];
   head = (head + 1) % (capacity + 1);
   return value;
 }
 
 //returns the head element without removing it
  firstValue() const {
-  return vec[head];
+  return Vec[head];
  }
  //a boolean method the returns true if the array contains no elements.
  bool isEmpty() {
@@ -90,7 +90,7 @@ removeFirst() {
    int i = head;
    //as long as the index is not the tail we continue to add  number into vec array
    while (i != tail) {
-            cout << vec[i] << "  ";
+            cout << Vec[i] << "  ";
             i = (i + 1) % (capacity + 1);
         }
         cout << endl;
