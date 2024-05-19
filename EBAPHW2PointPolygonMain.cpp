@@ -23,12 +23,9 @@ int main() {
     cout << "enter the point values:" << endl;
     fillPoints(Poly2, sides);
 
-    // Get a shallow copy of points for Poly1
-    Point* pointsCopy = Poly1.getPoints();
-    // Delete the shallow copy to trigger the destructor
-    delete[] pointsCopy;
-
-    if (Poly1.isIdentical(Poly2)) {
+    bool equal = Poly1.isIdentical(Poly2);
+    
+    if (equal) {
         cout << "equal" << endl;
         cout << "perimeter: " << round(Poly1.perimeter()) << endl;
     } else {
