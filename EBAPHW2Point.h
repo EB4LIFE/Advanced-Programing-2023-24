@@ -41,11 +41,9 @@ float distance(Point point)
     float distance;
     int x1 = OGx;
  .  int y1 = OGy;
-    int x2 = point.
-    int y2 = point.
-
-
-      distance = sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
+    int x2 = point.OGx;
+    int y2 = point.OGy;
+    distance = sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
     return distance;
 }
 
