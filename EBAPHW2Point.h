@@ -53,7 +53,7 @@ float distance(const Point& P)
 {
     float distance;
     float x1 = OGx;
- .  float y1 = OGy;
+    float y1 = OGy;
     float x2 = P.OGx;
     float y2 = P.OGy;
     distance = sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
@@ -62,4 +62,4 @@ float distance(const Point& P)
 
 
 };
-#endif POINT_H
+#endif 
