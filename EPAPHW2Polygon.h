@@ -2,11 +2,9 @@
 //346816549
 #ifndef POLYGON_H
 #define POLYGON_H
-
 #include "Point.h"
 #include <iostream>
 #include <cmath>
-
 using namespace std;
 
 class Polygon {
@@ -74,7 +72,7 @@ public:
     }
 
     // Method to check if two polygons are identical
-    bool isIdentical(const Polygon& poly) const {
+    bool isIdentical(const Polygon poly) {
         if (numPoints != poly.numPoints) {
             return false;
         }
