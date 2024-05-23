@@ -6,25 +6,25 @@
 #include <iostream>
 #include <string>
 using namespace std;
-
+//Moodle wanted 1920 for its default year as oppsed to question
 
 class MyDate {
 
 private: //by default
-//of month (basically 1 - 31)
-int day; 
-//of year (basically 1 -12)
-int month;
-// from defualt year to 9999
-int year;
+    //of month (basically 1 - 31)
+    int day;
+    //of year (basically 1 -12)
+    int month;
+    // from defualt year to 9999
+    int year;
 
-//CHECK IF Date IS VALID (puttting function here 
-//so we don't have to keep writing it over and over in public)
-//What this does is if year is invalid, or month is invalid  return false
-//And Date is seperate for the switch cases above or Date is invalid = false 
-//Otherwise true
-//We also include the leap year as well instead of 2 seperate ones
-bool isValidDate(int d, int m, int y) {
+    //CHECK IF Date IS VALID (puttting function here 
+    //so we don't have to keep writing it over and over in public)
+    //What this does is if year is invalid, or month is invalid  return false
+    //And Date is seperate for the switch cases above or Date is invalid = false 
+    //Otherwise true
+    //We also include the leap year as well instead of 2 seperate ones
+    bool isValidDate(int d, int m, int y) {
         if (y < 1920 || y > 9999 || m < 1 || m > 12 || d < 1 || d > 31) {
             return false;
         }
@@ -33,20 +33,21 @@ bool isValidDate(int d, int m, int y) {
             if (d > (leapYear ? 29 : 28)) {
                 return false;
             }
-        } else if (m == 4 || m == 6 || m == 9 || m == 11) {
+        }
+        else if (m == 4 || m == 6 || m == 9 || m == 11) {
             if (d > 30) {
                 return false;
             }
         }
         return true;
-}
-//Choice to make a set default 
-void setDefault() {
-    day = 1;
-    month = 1;
-    year = 1920;
-}
-//end of private
+    }
+    //Choice to make a set default 
+    void setDefault() {
+        day = 1;
+        month = 1;
+        year = 1920;
+    }
+    //end of private
 
 
 public:
@@ -56,21 +57,22 @@ public:
             day = d;
             month = m;
             year = y;
-        } 
+            //cout << "ctor tester" << endl;
+        }
         else {
-            //if date is not valid prints error and sets value to default date 
-            cout << "Error date" << endl;
-            setDefault();
+           cout << "Error date" << endl;
+           setDefault();
+           
         }
     }
     //copy ctor
-    MyDate(const MyDate &other) : day(other.day), month(other.month), year(other.year) {
-        
+    MyDate(const MyDate& other) : day(other.day), month(other.month), year(other.year) {
+
     }
-    
+
     //setDate method
         //no error check as stated per question
-        void setDate(int d, int m, int y) {
+    void setDate(int d, int m, int y) {
         if (isValidDate(d, m, y)) {
             day = d;
             month = m;
@@ -78,13 +80,13 @@ public:
         }
      }
     //printing
-    void print () const {
-        cout << day << "/" << month << "/" << year << endl;
-}
+    void print() const {
+        cout << day << "/" << month << "/" << year;
+    }
     //NOW OPERATORS
-    
+
         //first: = 0p just copy shallow
-        MyDate& operator=(const MyDate &other) {
+    MyDate& operator=(const MyDate& other) {
         if (this != &other) {
             day = other.day;
             month = other.month;
@@ -92,10 +94,10 @@ public:
         }
         return *this;
     }
-    
+
     // Prefix increment
     MyDate& operator++() {
-        
+
         //basically if incremented day is more than that of days of particular month
         //set MyDate to 1 and increment the month by 1 unless dec(12) then make it 1 and add to year
         //as we used an array of the months the leap year is included once again
@@ -126,25 +128,25 @@ public:
     }
 
 
-    bool operator>(const MyDate &other) const {
+    bool operator>(const MyDate& other) const {
         if (year != other.year) return year > other.year;
         if (month != other.month) return month > other.month;
         return day > other.day;
     }
 
-    bool operator<(const MyDate &other) const {
+    bool operator<(const MyDate& other) const {
         return !(*this >= other);
     }
 
-    bool operator==(const MyDate &other) const {
+    bool operator==(const MyDate& other) const {
         return day == other.day && month == other.month && year == other.year;
     }
 
-    bool operator>=(const MyDate &other) const {
+    bool operator>=(const MyDate& other) const {
         return *this > other || *this == other;
     }
 
-    bool operator<=(const MyDate &other) const {
+    bool operator<=(const MyDate& other) const {
         return *this < other || *this == other;
     }
 
