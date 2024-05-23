@@ -25,7 +25,7 @@ int year;
 //Otherwise true
 //We also include the leap year as well instead of 2 seperate ones
 bool isValidDate(int d, int m, int y) {
-        if (y < 1582 || y > 9999 || m < 1 || m > 12 || d < 1 || d > 31) {
+        if (y < 1920 || y > 9999 || m < 1 || m > 12 || d < 1 || d > 31) {
             return false;
         }
         if (m == 2) {
@@ -44,14 +44,14 @@ bool isValidDate(int d, int m, int y) {
 void setDefault() {
     day = 1;
     month = 1;
-    year = 1582;
+    year = 1920;
 }
 //end of private
 
 
 public:
     //assignment ctor with validity check
-    MyDate(int d = 1, int m = 1, int y = 1582) {
+    MyDate(int d = 1, int m = 1, int y = 1920) {
         if (isValidDate(d, m, y)) {
             day = d;
             month = m;
@@ -76,7 +76,7 @@ public:
             month = m;
             year = y;
         }
-    }
+     }
     //printing
     void print () const {
         cout << day << "/" << month << "/" << year << endl;
@@ -153,6 +153,3 @@ public:
 
 };
 #endif
-
-
-   
