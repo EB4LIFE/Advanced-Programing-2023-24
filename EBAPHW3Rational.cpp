@@ -33,6 +33,7 @@ int main()
 			cout << "before operation y is: ";
 			r1.print();
 			r3 = ++r1;
+			cout << endl;
 			cout << "after operation x is: ";
 			r3.print();
 			cout << endl << "y is: ";
@@ -43,6 +44,7 @@ int main()
 			cout << "before operation y is: ";
 			r1.print();
 			r3 = r1++;
+			cout << endl;
 			cout << "after operation x is: ";
 			r3.print();
 			cout << endl << "y is: ";
@@ -53,6 +55,7 @@ int main()
 			cout << "before operation y is: ";
 			r1.print();
 			r3 = --r1;
+			cout << endl;
 			cout << "after operation x is: ";
 			r3.print();
 			cout << endl << "y is: ";
@@ -63,6 +66,7 @@ int main()
 			cout << "before operation y is: ";
 			r1.print();
 			r3 = r1--;
+			cout << endl;
 			cout << "after operation x is: ";
 			r3.print();
 			cout << endl << "y is: ";
@@ -155,7 +159,8 @@ int main()
 			else cout << "no\n";
 			break;
 		}
-		cout << "enter your choice : " << endl;
+		cout << endl;
+		cout << " enter your choice : " << endl;
 		cin >> op;
 	}
 	return 0;
