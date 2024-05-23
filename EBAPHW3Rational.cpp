@@ -1,3 +1,6 @@
+//Eitan Brown 346816549
+//operator overloading
+//Main function given via moodle
 #include"Rational.h"
 #include <iostream>
 using namespace std;
