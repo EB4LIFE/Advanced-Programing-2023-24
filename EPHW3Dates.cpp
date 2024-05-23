@@ -9,7 +9,7 @@ int main () {
     char ch;
     int d, m, y;
 
-    cout << "Enter a date:" << endl;
+    cout << "Enter a date" << endl;
     cin >> d >> ch >> m >> ch >> y;
     d1.setDate(d, m, y);
     d1.print();
@@ -17,14 +17,14 @@ int main () {
     //will use switch such as previous example
     while (true) {
         int code;
-        cout << "Enter a code:" << endl;
+        cout << "Enter a code" << endl;
         cin >> code;
         
         if (code == 0) break;
 
         switch (code) {
             case 1:
-                cout << "Enter a date (dd/mm/yyyy):" << endl;
+                cout << "Enter a date" << endl;
                 cin >> d >> ch >> m >> ch >> y;
                 d1.setDate(d, m, y);
                 d1.print();
@@ -45,7 +45,7 @@ int main () {
                 break;
             case 4:
                 {
-                    cout << "Enter a date (dd/mm/yyyy):" << endl;
+                    cout << "Enter a date" << endl;
                     cin >> d >> ch >> m >> ch >> y;
                     MyDate d2(d, m, y);
                     d1 = d2;
@@ -54,7 +54,7 @@ int main () {
                 break;
             case 5:
                 {
-                    cout << "Enter a date:" << endl;
+                    cout << "Enter a date" << endl;
                     cin >> d >> ch >> m >> ch >> y;
                     MyDate d2(d, m, y);
                     cout << (d1 < d2 ? "true" : "false") << endl;
@@ -62,7 +62,7 @@ int main () {
                 break;
             case 6:
                 {
-                    cout << "Enter a date:" << endl;
+                    cout << "Enter a date" << endl;
                     cin >> d >> ch >> m >> ch >> y;
                     MyDate d2(d, m, y);
                     cout << (d1 > d2 ? "true" : "false") << endl;
@@ -70,7 +70,7 @@ int main () {
                 break;
             case 7:
                 {
-                    cout << "Enter a date:" << endl;
+                    cout << "Enter a date" << endl;
                     cin >> d >> ch >> m >> ch >> y;
                     MyDate d2(d, m, y);
                     cout << (d1 == d2 ? "true" : "false") << endl;
