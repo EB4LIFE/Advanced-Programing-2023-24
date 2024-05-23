@@ -1,8 +1,8 @@
 //Eitan Brown 346816549
 //Operator overload
 #pragma once
-#ifndef MYMyDate_H
-#define MYMyDate_H
+#ifndef MyDate_H
+#define MyDate_H
 #include <iostream>
 using namespace std;
 
