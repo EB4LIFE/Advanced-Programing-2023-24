@@ -5,14 +5,14 @@
 using namespace std;
 
 int main () {
-    MyDate d1;
     char ch;
     int d, m, y;
 
     cout << "Enter a date" << endl;
     cin >> d >> ch >> m >> ch >> y;
-    d1.setDate(d, m, y);
+    MyDate d1(d,m,y);
     d1.print();
+    cout << endl;
     
     //will use switch such as previous example
     while (true) {
@@ -28,19 +28,24 @@ int main () {
                 cin >> d >> ch >> m >> ch >> y;
                 d1.setDate(d, m, y);
                 d1.print();
+                cout << endl;
                 break;
             case 2:
                 {
                     MyDate result = ++d1;
                     result.print();
+                    cout << endl;
                     d1.print();
+                    cout << endl;
                 }
                 break;
             case 3:
                 {
                     MyDate result = d1++;
                     result.print();
+                    cout << endl;
                     d1.print();
+                    cout << endl;
                 }
                 break;
             case 4:
@@ -50,6 +55,7 @@ int main () {
                     MyDate d2(d, m, y);
                     d1 = d2;
                     d1.print();
+                    cout << endl;
                 }
                 break;
             case 5:
@@ -57,7 +63,11 @@ int main () {
                     cout << "Enter a date" << endl;
                     cin >> d >> ch >> m >> ch >> y;
                     MyDate d2(d, m, y);
-                    cout << (d1 < d2 ? "true" : "false") << endl;
+                    d1.print();
+                    cout << " > ";
+                    d2.print();
+                    cout << " : ";
+                    cout << (d1 > d2 ? "true" : "false") << endl;
                 }
                 break;
             case 6:
@@ -65,7 +75,11 @@ int main () {
                     cout << "Enter a date" << endl;
                     cin >> d >> ch >> m >> ch >> y;
                     MyDate d2(d, m, y);
-                    cout << (d1 > d2 ? "true" : "false") << endl;
+                    d1.print();
+                    cout << " < ";
+                    d2.print();
+                    cout << " : ";
+                    cout << (d1 < d2 ? "true" : "false") << endl;
                 }
                 break;
             case 7:
@@ -73,6 +87,10 @@ int main () {
                     cout << "Enter a date" << endl;
                     cin >> d >> ch >> m >> ch >> y;
                     MyDate d2(d, m, y);
+                    d1.print();
+                    cout << "==";
+                    d2.print();
+                    cout << " : ";
                     cout << (d1 == d2 ? "true" : "false") << endl;
                 }
                 break;
