@@ -18,8 +18,9 @@ int year;
 //From Year zero CE (basically zero and up)
 public:
 
-//Assungment ctor
-Date () {
+//Assingment ctor
+Date (int dday = 1, int dmonth = 1, int dyear = 1582) : day(dday), month(dmonth), year(dyear) {
+  //check the validity of the date according to the rules described here
 }
 //copy since we are dealing with date will cal it fruit cuz i'm funny
 Date (const Date &fruit) {
