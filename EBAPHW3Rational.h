@@ -12,11 +12,11 @@ private:
     int numerator;
     int denominator;
 //for functions reduce later 
- int getGCD(int a, int b) const {
+ int getgcd(int a, int b) const {
         if (b == 0) {
             return a;
         }
-        return getGCD(b, a % b);
+        return getgcd(b, a % b);
     }
 public:
 
@@ -71,15 +71,13 @@ public:
     int getDenominator() const {
         return denominator;
     }
-    // Helper method to reduce the fraction
+// Helper "stepping stone" function method for reducing the fraction
     void reduce() {
+        int gcd = getgcd(numerator, denominator);
+        numerator /= gcd;
+        denominator /= gcd;
         if (numerator == 0) {
             denominator = 1;
-        } 
-        else {
-            int gcd = gcd(numerator, denominator);
-            numerator /= gcd;
-            denominator /= gcd;
         }
     }
 
@@ -160,7 +158,7 @@ public:
     bool operator!=(const Rational &other) const {
         return !(*this == other);
     }
-//provifg less than by cross mult
+//provifg less than by cross mult like by addition and subtraction
     bool operator<(const Rational &other) const {
         return (numerator * other.denominator) < (other.numerator * denominator);
     }
@@ -179,4 +177,3 @@ public:
 };
 
 #endif 
-
