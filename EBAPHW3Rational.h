@@ -100,7 +100,8 @@ public:
         result.reduce();
         return result;
     }
-//This operator subtracts one rational number from another. It follows a similar approach to addition, but subtracts the cross products of the numerators.
+//This operator subtracts one rational number from another. 
+//It follows a similar approach to addition, but subtracts the cross products of the numerators.
     Rational operator-(const Rational &other) const {
         Rational result(numerator * other.denominator - other.numerator * denominator,
                         denominator * other.denominator);
