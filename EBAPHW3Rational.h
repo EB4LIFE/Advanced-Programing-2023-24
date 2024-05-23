@@ -149,11 +149,11 @@ public:
     }
 //This operator checks if two rational numbers are equal by reducing both and then comparing their numerators and denominators.
     bool operator==(const Rational &other) const {
-        Rational lhs(*this);
-        Rational rhs(other);
-        lhs.reduce();
-        rhs.reduce();
-        return (lhs.numerator == rhs.numerator) && (lhs.denominator == rhs.denominator);
+        Rational temp1(*this);
+        Rational temp2(other);
+        temp1.reduce();
+        temp2.reduce();
+        return (temp1.numerator == temp2.numerator) && (temp1.denominator == temp2.denominator);
     }
 //This operator checks if two rational numbers are not equal by using the equality operator 
     bool operator!=(const Rational &other) const {
