@@ -41,7 +41,7 @@ public:
     }
 
 // Copy constructor
-    Rational(const Rational &other) : numerator(other.numerator), denominator(other.denominator) {
+    Rational(const Rational& other) : numerator(other.numerator), denominator(other.denominator) {
       //nothing to implement 
     }
 
