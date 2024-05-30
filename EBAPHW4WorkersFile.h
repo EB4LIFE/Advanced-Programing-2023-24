@@ -163,6 +163,11 @@ public:
     }
 
     // operator[] for extracting a Worker by index
+    //Receives the index of a worker.
+    //Returns a Worker instance with the fields set to the values in the corresponding line in the file.
+    //Note: Usually operator[] returns a reference to allow for modification and to prevent copying needlessly. 
+    //In this case because the access is to a physical file this is not possible and a
+    //Worker instance must be returned (Worker, not Worker&)
     Worker operator[](int index) {
         if (!openFileForReading()) return Worker();
 
@@ -178,9 +183,12 @@ public:
     }
 
     // operator+= to add a bonus to all workers
+    //Receives a right operand float as the bonus for all the workers
+    //The method reads all the workers into a local array of Workers, adds the
+    //bonus to each of the workers and writes them into the file with the new values.
     WorkersFile& operator+=(float bonus) {
         if (!openFileForReading()) return *this;
-
+        //dma as before
         Worker* workers = new Worker[size];
         int count = 0;
         Worker w;
@@ -188,21 +196,27 @@ public:
             workers[count++] = w;
         }
         closeFile();
-
+        //as loop while is in - we add the bonus to worker we are at
         for (int i = 0; i < count; ++i) {
             workers[i] += bonus;
         }
-
+        //then put new values for workers into array
         openNewFileForWriting();
         for (int i = 0; i < count; ++i) {
             iofile << workers[i] << endl;
         }
+        //essentially destr
         closeFile();
+        //delete for dma
         delete[] workers;
         return *this;
     }
 
     // operator+ to merge with another file
+    //Receives a WorkersFile reference as the right operand.
+    //The method creates and returns a new instance of WorkersFile which
+    //contains the workers from the right operand file appended to the
+    //workers from the left operand file (first left then right).
     WorkersFile operator+(WorkersFile& other) {
         WorkersFile mergedFile("merged_" + fileName + "_" + other.fileName);
 
