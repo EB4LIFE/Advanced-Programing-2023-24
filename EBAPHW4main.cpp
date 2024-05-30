@@ -145,7 +145,7 @@ WorkersFile wf5_b(name5b);
 cout << "Input worker details, id name salary. Into file: " << name5b << ". press 0 0 0 to end:" << endl;
 cin >> wf5_b;
 WorkersFile wf5 = wf5_a + wf5_b; //the compiler optimized by not
-calling to copy ctor
+//calling to copy ctor
 cout << "Merged file:" << endl;
 cout << wf5;
 wf5.sort(false);
