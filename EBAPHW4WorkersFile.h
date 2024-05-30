@@ -1,3 +1,4 @@
+
 //eitanbrown 346816549
 #pragma once
 #ifndef WORKERSFILE_H
@@ -218,28 +219,40 @@ public:
     //The method creates and returns a new instance of WorkersFile which
     //contains the workers from the right operand file appended to the
     //workers from the left operand file (first left then right).
-    WorkersFile operator+(WorkersFile& other) {
-        WorkersFile mergedFile("merged_" + fileName + "_" + other.fileName);
+    WorkersFile operator+(WorkersFile& other) 
+    {
+    WorkersFile mergedFile("merged_" + fileName + "_" + other.fileName);
 
-        // Reading workers from the current file
-        if (openFileForReading()) {
-            Worker w;
-            while (iofile >> w) {
-                mergedFile += w;
-            }
-            closeFile();
-        }
-
-        // Reading workers from the other file
-        if (other.openFileForReading()) {
-            Worker w;
-            while (other.iofile >> w) {
-                mergedFile += w;
-            }
-            other.closeFile();
-        }
-
+    // Open the merged file for writing
+    if (!mergedFile.openNewFileForWriting()) {
         return mergedFile;
     }
+
+    // Read workers from the current file and write to mergedFile
+    if (openFileForReading()) {
+        Worker w;
+        while (iofile >> w) {
+            mergedFile.iofile << w << endl;
+            mergedFile.size++;
+        }
+        closeFile();
+    }
+
+    // Read workers from the other file and write to mergedFile
+    if (other.openFileForReading()) {
+        Worker w;
+        while (other.iofile >> w) {
+            mergedFile.iofile << w << endl;
+            mergedFile.size++;
+        }
+        other.closeFile();
+    }
+
+    // Close the merged file
+    mergedFile.closeFile();
+
+    return mergedFile;
+}
+
 };
 #endif
