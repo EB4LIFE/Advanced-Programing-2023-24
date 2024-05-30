@@ -126,9 +126,13 @@ public:
     }
 
     // sort method
+    //def = true 
+    //if true remains: workers sorted via ascending order and false via descending
+    //we put workers into array and then normal sorting from there
     void sort(bool ascending = true) {
-        if (!openFileForReading()) return;
-
+        if (!openFileForReading()) {
+            return;
+        }
         // Reading workers into an array
         Worker* workers = new Worker[size];
         int count = 0;
@@ -137,8 +141,7 @@ public:
             workers[count++] = w;
         }
         closeFile();
-
-        // Sorting using a simple sorting algorithm
+        // Sorting using a simple sorting algorithm that we all know and love, can you guess which one
         for (int i = 0; i < count - 1; ++i) {
             for (int j = 0; j < count - i - 1; ++j) {
                 if ((ascending && workers[j] < workers[j + 1]) ||
@@ -149,13 +152,13 @@ public:
                 }
             }
         }
-
+        //put back into a file 
         openNewFileForWriting();
         for (int i = 0; i < count; ++i) {
             iofile << workers[i] << endl;
         }
         closeFile();
-
+        //deletes created dma
         delete[] workers;
     }
 
