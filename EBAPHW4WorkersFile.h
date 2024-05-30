@@ -131,38 +131,46 @@ public:
     //def = true 
     //if true remains: workers sorted via ascending order and false via descending
     //we put workers into array and then normal sorting from there
-    void sort(bool ascending = true) {
-        if (!openFileForReading()) {
-            return;
-        }
-        // Reading workers into an array
-        Worker* workers = new Worker[size];
-        int count = 0;
-        Worker w;
-        while (iofile >> w && count < size) {
-            workers[count++] = w;
-        }
-        closeFile();
-        // Sorting using a simple sorting algorithm that we all know and love, can you guess which one
-        for (int i = 0; i < count - 1; ++i) {
-            for (int j = 0; j < count - i - 1; ++j) {
-                if ((ascending && workers[j] < workers[j + 1]) ||
-                    (!ascending && workers[j + 1] < workers[j])) {
-                    Worker temp = workers[j];
-                    workers[j] = workers[j + 1];
-                    workers[j + 1] = temp;
-                }
-            }
-        }
-        //put back into a file 
-        openNewFileForWriting();
-        for (int i = 0; i < count; ++i) {
-            iofile << workers[i] << endl;
-        }
-        closeFile();
-        //deletes created dma
-        delete[] workers;
+void sort(bool ascending = true) {
+    // If file is not open, there will be nothing to do, so exit
+    if (!openFileForReading()) {
+        return;
     }
+    //the real test sort
+    // Reading workers into an array
+    Worker* workers = new Worker[size];
+    int count = 0;
+    Worker w;
+    while (iofile >> w && count < size) {
+        workers[count++] = w;
+    }
+    closeFile();
+
+// Sorting using a bubble sort algorithm
+for (int i = 0; i < count - 1; ++i) {
+    for (int j = 0; j < count - i - 1; ++j) {
+        bool condition = ascending ? !workers[j + 1].compare(workers[j]) : workers[j + 1].compare(workers[j]);
+        if (!condition) {
+            Worker temp = workers[j];
+            workers[j] = workers[j + 1];
+            workers[j + 1] = temp;
+        }
+    }
+}
+// Writing sorted workers back to the file
+    if (!openNewFileForWriting()) {
+        delete[] workers;  
+        // Clean up DMA
+        return;
+    }
+    for (int i = 0; i < count; ++i) {
+        iofile << workers[i] << endl;
+    }
+    closeFile();
+
+    //Delete DMA
+    delete[] workers;
+}
 
     // operator[] for extracting a Worker by index
     //Receives the index of a worker.
