@@ -1,4 +1,5 @@
 //eitan brown 346816549
+#pragma once
 #ifndef WORKER_H
 #define WORKER_H
 #include <iostream>
