@@ -41,20 +41,35 @@ public:
         return this->wages < other.wages;
     }
 
-    // Friend functions - new
+    // Friend functions - new stuff 
+    //eqality to left operand type long
+    //Receives a Worker as a right operand (const and &).
+    //Returns true if the id numbers of both operands are equal. Otherwise
+    //returns false.
     friend bool operator==(long left, const Worker& right) {
         return left == right.id;
     }
-
+    //eqality to left operand type string
+    //Receives a Worker as a right operand (const and &).
+    //Returns true if the nanmeof both operands are equal. Otherwise
+    //returns false.
     friend bool operator==(const string& left, const Worker& right) {
         return left == right.name;
     }
-
+    //input from itream& aka cin
+    // Receives a Worker as a right operand (const and &).
+    //Inputs the values of the three fields (consecutively, separated by spaces)
+    //into the Worker instance.
+    //Returns a reference to the input object (istream&).
     friend istream& operator>>(istream& input, Worker& worker) {
         input >> worker.id >> worker.name >> worker.wages;
         return input;
     }
-
+    //output from ostream& aka cout
+    //Receives a Worker as a right operand (const and &).
+    //Outputs the values of the three fields (consecutively, separated by
+    //spaces) from the Worker instance.
+    //Returns a reference to the output object (ostream&).
     friend ostream& operator<<(ostream& output, const Worker& worker) {
         output << worker.id << " " << worker.name << " " << worker.wages;
         return output;
