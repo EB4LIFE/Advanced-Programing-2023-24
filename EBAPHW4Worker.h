@@ -1,3 +1,4 @@
+
 //eitan brown 346816549
 #pragma once
 #ifndef WORKER_H
@@ -17,7 +18,7 @@ private:
     // Monthly wages, greater than 0
 
 public:
-
+    
     // Default ctor and setting everything to 0 
     Worker() : id(0), name(""), wages(0.0) {
      
@@ -74,6 +75,14 @@ public:
     friend ostream& operator<<(ostream& output, const Worker& worker) {
         output << worker.id << " " << worker.name << " " << worker.wages;
         return output;
+    }
+    //Test - used to help sort function in WorkFile.h
+    // New public member function for comparison
+    bool compare(const Worker& other) const {
+        if (wages != other.wages) {
+            return wages < other.wages;
+        }
+        return name > other.name;
     }
 };
 #endif
