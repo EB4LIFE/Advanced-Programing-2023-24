@@ -85,23 +85,23 @@ string getMail() const {
 }
 //static methods voids are essentials setters and static int are getters (return etc)
 //method to withdraw a given amount of money from an account
-void withdraw(int shek, Clock clocker) {
+void withdraw(int nis, Clock clocker) {
    //This will check withdrawl
    //If he withdraws and he gets below -6000 which oversteps overdraft limits throw 6000
-   if ((balance - shek) < -6000) throw 6000; 
+   if ((balance - nis) < -6000) throw 6000; 
    //if he tries to withdraw more than limit of 2500 throw 2500
-	if (shek > 2500) throw 2500; 
+	if (nis > 2500) throw 2500; 
 	//at this point everything was smooth and was inbounds so edit account accordingly
-	balance -= shek; 
-	sumWithdraw += shek; 
+	balance -= nis; 
+	sumWithdraw += nis; 
 }
 //method to deposit
-void deposit(int shek, Clock clocker) {
+void deposit(int nis, Clock clocker) {
    //tries to deposit more than 1000 shek at a time..
-   if (shek > 10000) throw string("ERROR: cannot deposit more than 10000 NIS!"); 
+   if (nis > 10000) throw string("ERROR: cannot deposit more than 10000 NIS!"); 
 	//at this point everything was smooth and was inbounds so edit account accordingly
-	balance += shek; 
-	sumDeposit += shek; 
+	balance += nis; 
+	sumDeposit += nis; 
 }
 //as static const is not needed
 static int getSumWithdraw() {
