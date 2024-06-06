@@ -5,15 +5,15 @@
 using namespace std;
 
 
-Class Clock {
+class Clock {
 
-Private:
+private:
 //by default
 int hour;
 int minute; 
 int second;
 
-Public:
+public:
 
 //ctor
 Clock() {
@@ -22,7 +22,7 @@ Clock() {
    second = 00;
 }
 //assignment ctor 
-Clock(int hours, int min, int sec) : hour(hours), minute(min), sec(second) {
+Clock(int hours, int min, int sec) : hour(hours), minute(min), second(sec) {
     //set parameters for max and error check for variables
     try {
 		if ((hour > 23) || (hour < 0)) {
@@ -157,7 +157,7 @@ int getSec() const
 //add immediate operation overload method
 //add another sec variable 
 Clock operator+=(int sec2) {
-    second += se2s; 
+    second += sec2; 
     //if new value for seconds is too big
     //We put them into minute so can get rid of them in seconds
 	if (second > 59) { 
