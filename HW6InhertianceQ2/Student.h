@@ -17,11 +17,13 @@ public:
     // Constructor
     Student(int id, string firstName, string lastName, int numCourses);
 
-    // Pure virtual functions
-    virtual void print() const = 0; // Prints student details
-    virtual bool milga() const = 0; // Checks if student is eligible for milga
+    // Pure virtual functions only to be derived in child classes
+     // Prints student details
+    virtual void print() const = 0;
+    // Checks if student is eligible for milga
+    virtual bool milga() const = 0; 
 
-    // Virtual destructor (recommended for polymorphic base classes)
+    // Virtual destructor 
     virtual ~Student() {}
 };
 
