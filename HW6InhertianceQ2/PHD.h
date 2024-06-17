@@ -1,19 +1,23 @@
+#ifndef PHD_H
+#define PHD_H
+
+#include "Student.h"
+
+//child of students
 class PHD : public Student {
 private:
+    //private and spefic to pHD students
     int researchHours;
+
 public:
-    PHD(int id, string firstName, string lastName, int numCourses, int researchHours)
-        : Student(id, firstName, lastName, numCourses), researchHours(researchHours) {}
+    // Constructor
+    PHD(int id, string firstName, string lastName, int numCourses, int researchHours);
 
-    bool milga() const override {
-        return numCourses >= 2 && researchHours > 25;
-    }
-
-    void print() const override {
-        cout << "ID: " << id << endl;
-        cout << "First Name: " << firstName << endl;
-        cout << "Last Name: " << lastName << endl;
-        cout << "Number of Courses: " << numCourses << endl;
-        cout << "Hours: " << researchHours << endl;
-    }
+    // Override functions
+    // Checks if student is eligible for milga
+    bool milga() const override; 
+    // Prints student details including research hours
+    void print() const override; 
 };
+
+#endif // PHD_H
