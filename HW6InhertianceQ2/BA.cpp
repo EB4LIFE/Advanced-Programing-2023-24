@@ -7,6 +7,7 @@ using namespace std;
 BA::BA(int id, string firstName, string lastName, int numCourses, int* grades, int gradesSize)
     : Student(id, firstName, lastName, numCourses), gradesSize(gradesSize) {
     // DMA for grades array and copy values from grades parameter
+    //arrow --> because it's a ptr
     this->grades = new int[gradesSize];
     for (int i = 0; i < gradesSize; i++) {
         this->grades[i] = grades[i];
