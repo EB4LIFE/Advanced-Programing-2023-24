@@ -1,39 +1,26 @@
+#ifndef BA_H
+#define BA_H
+
+#include "Student.h"
+
+// Child class BA from Student
 class BA : public Student {
 private:
     int* grades;
     int gradesSize;
+
 public:
-    BA(int id, string firstName, string lastName, int numCourses, int* grades, int gradesSize)
-        : Student(id, firstName, lastName, numCourses), gradesSize(gradesSize) {
-        this->grades = new int[gradesSize];
-        for (int i = 0; i < gradesSize; i++) {
-            this->grades[i] = grades[i];
-        }
-    }
-    
-    ~BA() {
-        delete[] grades;
-    }
+    // Constructor
+    BA(int id, string firstName, string lastName, int numCourses, int* grades, int gradesSize);
 
-    bool milga() const override {
-        if (numCourses < 10) return false;
-        int sum = 0;
-        for (int i = 0; i < gradesSize; i++) {
-            sum += grades[i];
-        }
-        double avg = sum / (double)gradesSize;
-        return avg > 95;
-    }
+    // Destructor
+    ~BA();
 
-    void print() const override {
-        cout << "ID: " << id << endl;
-        cout << "First Name: " << firstName << endl;
-        cout << "Last Name: " << lastName << endl;
-        cout << "Number of Courses: " << numCourses << endl;
-        cout << "Grades: ";
-        for (int i = 0; i < gradesSize; i++) {
-            cout << grades[i] << " ";
-        }
-        cout << endl;
-    }
+    // Override functions
+    //a member function that overrides a virtual function and is itself declared as const, meaning it does not modify the object's state.
+    //Essentialy keeps themm const throughout all 'child' files (no perfectly needed but helps with bugs) 
+    bool milga() const override; // Checks if student is eligible for milga
+    void print() const override; // Prints student details
 };
+
+#endif // BA_H
