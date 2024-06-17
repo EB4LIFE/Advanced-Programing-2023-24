@@ -1,23 +1,22 @@
+#ifndef MA_H
+#define MA_H
+
+#include "BA.h"
+
+// Derived class MA from BA
 class MA : public BA {
 private:
     bool research;
+
 public:
-    MA(int id, string firstName, string lastName, int numCourses, int* grades, int gradesSize, bool research)
-        : BA(id, firstName, lastName, numCourses, grades, gradesSize), research(research) {}
+    // Constructor
+    MA(int id, string firstName, string lastName, int numCourses, int* grades, int gradesSize, bool research);
 
-    bool milga() const override {
-        if (numCourses < 7) return false;
-        if (!research) return false;
-        int sum = 0;
-        for (int i = 0; i < gradesSize; i++) {
-            sum += grades[i];
-        }
-        double avg = sum / (double)gradesSize;
-        return avg > 90;
-    }
-
-    void print() const override {
-        BA::print();
-        cout << "Research: " << (research ? "Yes" : "No") << endl;
-    }
+    // Override functions
+    // Checks if student is eligible for milga
+    bool milga() const override; 
+    // Prints student details including research status from private so specfic to masters
+    void print() const override; 
 };
+
+#endif // MA_H
