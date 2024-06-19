@@ -3,21 +3,26 @@
 
 #include "Student.h"
 
-//child of students
 class PHD : public Student {
 private:
-    //private and spefic to pHD students
-    int researchHours;
+    int hoursInResearch;
 
 public:
-    // Constructor
-    PHD(int id, string firstName, string lastName, int numCourses, int researchHours);
+    // Default constructor
+    PHD() : Student(), hoursInResearch(0) {}
 
-    // Override functions
-    // Checks if student is eligible for milga
-    bool milga() const override; 
-    // Prints student details including research hours
-    void print() const override; 
+    // Parameterized constructor
+    PHD(int id, const string& first, const string& last, int courses, int hours)
+        : Student(id, first, last, courses), hoursInResearch(hours) {}
+
+    // Input method
+    void input() override;
+
+    // Print method
+    void print() const override;
+
+    // Grant eligibility method
+    bool milga() const override;
 };
 
 #endif // PHD_H
