@@ -3,20 +3,26 @@
 
 #include "BA.h"
 
-// Derived class MA from BA
 class MA : public BA {
 private:
-    bool research;
+    bool writingThesis;
 
 public:
-    // Constructor
-    MA(int id, string firstName, string lastName, int numCourses, int* grades, int gradesSize, bool research);
+    // Default constructor
+    MA() : BA(), writingThesis(false) {}
 
-    // Override functions
-    // Checks if student is eligible for milga
-    bool milga() const override; 
-    // Prints student details including research status from private so specfic to masters
-    void print() const override; 
+    // Parameterized constructor
+    MA(int id, const string& first, const string& last, int courses, const vector<int>& grades, bool thesis)
+        : BA(id, first, last, courses, grades), writingThesis(thesis) {}
+
+    // Input method
+    void input() override;
+
+    // Print method
+    void print() const override;
+
+    // Grant eligibility method
+    bool milga() const override;
 };
 
 #endif // MA_H
