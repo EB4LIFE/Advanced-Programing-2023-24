@@ -1,26 +1,34 @@
 #ifndef BA_H
 #define BA_H
-
 #include "Student.h"
+#include <vector>
 
-// Child class BA from Student
 class BA : public Student {
-private:
-    int* grades;
-    int gradesSize;
+protected:
+    vector<int> grades;
 
 public:
-    // Constructor
-    BA(int id, string firstName, string lastName, int numCourses, int* grades, int gradesSize);
+    // Default constructor
+    BA() : Student(), grades() {}
 
-    // Destructor
-    ~BA();
+    // Parameterized constructor
+    BA(int id, const string& first, const string& last, int courses, const vector<int>& grades)
+        : Student(id, first, last, courses), grades(grades) {}
 
-    // Override functions
-    //a member function that overrides a virtual function and is itself declared as const, meaning it does not modify the object's state.
-    //Essentialy keeps themm const throughout all 'child' files (no perfectly needed but helps with bugs) 
-    bool milga() const override; // Checks if student is eligible for milga
-    void print() const override; // Prints student details
+    // Input method
+    void input() override;
+
+    // Print method
+    void print() const override;
+
+    // Grant eligibility method
+    bool milga() const override;
+
+protected:
+    // Protected accessor for grades
+    const vector<int>& getGrades() const { 
+       return grades; 
+           }
 };
 
 #endif // BA_H
