@@ -1,32 +1,33 @@
 #ifndef STUDENT_H
 #define STUDENT_H
 
+#include <iostream>
 #include <string>
-
 using namespace std;
 
-// Base abstract class representing a student
 class Student {
 protected:
-    int id;
+    int studentId;
     string firstName;
     string lastName;
     int numCourses;
 
 public:
     // Constructor
-    Student(int id, string firstName, string lastName, int numCourses);
+    Student(int id = 0, const string& first = "", const string& last = "", int courses = 0)
+        : studentId(id), firstName(first), lastName(last), numCourses(courses) {}
 
-    // Pure virtual functions only to be derived in child classes
-     // Prints student details
+    // Pure virtual function for input
+    virtual void input() = 0;
+
+    // Virtual function for print
     virtual void print() const = 0;
-    // Checks if student is eligible for milga
-    virtual bool milga() const = 0; 
 
-    // Virtual destructor 
+    // Virtual function for grant eligibility
+    virtual bool milga() const = 0;
+
+    // Virtual destructor
     virtual ~Student() {}
 };
 
 #endif // STUDENT_H
-
-
