@@ -1,56 +1,37 @@
 #include "BA.h"
-#include <iostream>
 
-using namespace std;
-
-// Constructor definition
-BA::BA(int id, string firstName, string lastName, int numCourses, int* grades, int gradesSize)
-    : Student(id, firstName, lastName, numCourses), gradesSize(gradesSize) {
-    // DMA for grades array and copy values from grades parameter
-    //arrow --> because it's a ptr
-    this->grades = new int[gradesSize];
-    for (int i = 0; i < gradesSize; i++) {
-        this->grades[i] = grades[i];
+// Input method
+void BA::input() {
+    cout << "enter id, first name, Last name, number of courses\n";
+    cin >> studentId >> firstName >> lastName >> numCourses;
+    grades.resize(numCourses);
+    cout << "and enter a list of student grades" << endl;
+    for (int i = 0; i < numCourses; ++i) {
+        cin >> grades[i];
     }
 }
 
-// Destructor definition
-BA::~BA() {
-    //DMA for grades array
-    delete[] grades;
-}
-
-// Override function milga() definition
-bool BA::milga() const {
-    // Check if the student has taken at least 10 courses
-    if (numCourses < 10) {
-      return false;
-    }
-    // Calculate the sum of grades
-    int sum = 0;
-    for (int i = 0; i < gradesSize; i++) {
-        sum += grades[i];
-    }
-
-    // Calculate the average grade using static_cast to ensure floating point division is done properly and looked it up
-    //and is indded needed 
-    double avg = sum / static_cast<double>(gradesSize);
-
-    // Determine if the student qualifies for milga (average grade > 95)
-    return avg > 95;
-}
-
-// Override function print() definition
-//remainging const and print like it did in students
+// Print method
 void BA::print() const {
-    cout << "ID: " << id << endl;
-    cout << "First Name: " << firstName << endl;
-    cout << "Last Name: " << lastName << endl;
-    cout << "Number of Courses: " << numCourses << endl;
-    cout << "Grades: ";
-    for (int i = 0; i < gradesSize; i++) {
-        cout << grades[i] << " ";
+    cout << "ID:\t" << studentId << endl;
+    cout << "Name:\t" << firstName << " " << lastName << endl;
+    //cout << "num courses: " << numCourses << endl;
+    cout << "grades: ";
+    for (int grade : grades) {
+        cout << grade << " ";
     }
     cout << endl;
 }
 
+// Grant 
+bool BA::milga() const {
+    if (numCourses < 10) {
+        return false;
+    }
+    double average = 0;
+    for (int grade : grades) {
+        average += grade;
+    }
+    average /= numCourses;
+    return average > 95;
+}
