@@ -22,5 +22,5 @@ bool PHD::milga() const {
 }
 
 string PHD::studType() const  {
-        return "PHD";
+        return "PhD student\n";
     }
