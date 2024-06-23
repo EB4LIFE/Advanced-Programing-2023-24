@@ -9,8 +9,8 @@ void MA::input() {
 
 // Print method
 void MA::print() const {
-    BA::print();
-    cout << "research:\t" << (writingThesis ? "1" : "0") << endl;
+      BA::print();
+    cout << "research:\t" << (writingThesis ? "YES" : "NO") << endl;
 }
 
 // Grant eligibility method
@@ -27,5 +27,5 @@ bool MA::milga() const {
 }
 
 string MA::studType() const  {
-        return "MA";
+        return "MA student\n";
     }
