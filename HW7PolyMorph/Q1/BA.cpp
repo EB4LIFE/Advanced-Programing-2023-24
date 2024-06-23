@@ -37,5 +37,5 @@ bool BA::milga() const {
 }
 
 string BA::studType() const  {
-        return "BA";
+        return "BA student\n";
     }
