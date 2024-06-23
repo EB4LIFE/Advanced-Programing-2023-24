@@ -2,14 +2,14 @@
 #include "BA.h"
 #include "MA.h"
 #include "PHD.h"
-#include <stdexcept> 
+#include <exception>
 #include <iostream>
 using namespace std;
 
 int main () {
    int numstudents;
    
-   cout << "Enter the number of students: ";
+   cout << "Enter the number of students: " << endl;
    cin >> numstudents;
    
    
@@ -18,6 +18,7 @@ int main () {
     
     //Make a for loop with 'n' with the numstudents size
     for(int i = 0; i < numstudents; ++i) {
+        cout<< "\nStudent " << (i+1) << " of " << numstudents << endl;
        //we will include a flag for invalid input for exceptions
        bool Valid = false;
        while(!Valid) {
@@ -25,26 +26,33 @@ int main () {
               // Call addStudent to create and input student
              students[i] = addStudent();
               Valid = true;
-          } catch (...) { 
-                cout << "Error: Invalid input. Please try again." << endl;
+          } catch (const string& e) {
+                cout << e << endl;
+                cout<< "\nStudent " << (i+1) << " of " << numstudents << endl;
             }
        }
     }
+    
    //now we print who of choses students are eligible
-   cout << "Students entitled for milga are:" << endl;
+   cout << "\nStudents entitled for milga are:" << endl;
+   cout << endl;
    //counter condition for students
-   int goodstudents = 0;
+  // int goodstudents = 0;
    //for loop to itterrate through students array to check condtions 
    for (int i = 0; i < numstudents; ++i) {
       if (students[i]->milga()) {
+            
+            cout << students[i]->studType();
             students[i]->print();
-            ++goodstudents;
+            cout << endl;
         }
         
    }
+   /*
    if(goodstudents == 0) {
       cout << "No student was good enough." << endl;
    }
+   */
    
    // Free dynamically allocated memory first index then ptr
     for (int i = 0; i < numstudents; ++i) {
