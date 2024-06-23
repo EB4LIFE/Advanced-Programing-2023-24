@@ -11,9 +11,8 @@ protected:
     string firstName;
     string lastName;
     int numCourses;
-    // Student study type 
-    virtual string studType() const = 0;
-public:
+   
+  public:
     // Constructor
     Student(int id = 0, const string& first = "", const string& last = "", int courses = 0)
         : studentId(id), firstName(first), lastName(last), numCourses(courses) {}
@@ -27,6 +26,7 @@ public:
     // Virtual function for grant eligibility
     virtual bool milga() const = 0;
     
+     virtual string studType() const = 0;
   
 
     // Virtual destructor
