@@ -10,114 +10,149 @@
 #include <iostream>  // for input and output
 using namespace std;
 
-// Function to input students of all types and add them to a list
+//Function to input students of all types and add them to a list
 void addStudent(list<Student*>& students) {
-    int type; // variable to store degree type
+    // variable to store degree type
+    int type; 
     while (true) {
         cout << "Enter degree: 1 for BA, 2 for MA, or 3 for PhD, 0 to finish" << endl;
-        cin >> type; // take input from user
+        cin >> type;
         if (type == 0) break; // exit loop if input is 0
-        
-        Student* newStudent = nullptr; // pointer to hold new student object
+        // pointer to hold new student object
+        Student* newStudent = nullptr; 
         try {
-            // Logic to create new instances of BA, MA, or PHD based on user input
+            //Logic to create new instances of BA, MA, or PHD based on user input
             switch (type) {
                 case 1:
-                    // Create new BA student
+                    //Create new BA student
                     newStudent = new BA();
                     break;
                 case 2:
-                    // Create new MA student
+                    //Create new MA student
                     newStudent = new MA();
                     break;
                 case 3:
-                    // Create new PHD student
+                    //Create new PHD student
                     newStudent = new PHD();
                     break;
                 default:
-                    // Throw exception for invalid degree type
+                    //Throw exception for invalid degree type (not 0,1,2,3)
                     throw string("Exception: no such degree");
             }
-            newStudent->input();  // Input student details
-            students.push_back(newStudent); // Add student to list
+            //Input student details(based on type)
+            newStudent->input();
+            //Add student to list
+            students.push_back(newStudent); 
         } catch (const string& e) {
             // Catch and print exception message
             cout << e << endl;
-            delete newStudent; // Clean up allocated memory if exception is thrown
+            // Clean up allocated memory if exception is thrown
+            delete newStudent;
         }
     }
 }
-
 int main() {
-    list<Student*> studentList; // List to store all students
-    addStudent(studentList); // Input students and add them to the list
+    // List to store all students
+    list<Student*> studentList; 
+    // Input students and add them to the list
+    addStudent(studentList); 
 
     // Declare vectors for each type of student
-    vector<BA> baStudents;
-    vector<MA> maStudents;
-    vector<PHD> phdStudents;
+    // Vector to hold BA students
+    vector<BA> baStudents; 
+    // Vector to hold MA students
+    vector<MA> maStudents; 
+    // Vector to hold PHD students
+    vector<PHD> phdStudents; 
 
-    // Iterate through the list and copy elements to the correct vectors based on studType
+     // Iterate through the list and copy elements to the correct vectors based on studType
+    // Using auto here automatically deduces the type of the iterator (list<Student*>::iterator)
     for (auto it = studentList.begin(); it != studentList.end(); ++it) {
+        // Check if the student is a BA student
         if ((*it)->studType() == "BA student") {
             // Add BA student to baStudents vector
             baStudents.push_back(dynamic_cast<BA&>(**it));
+        // Check if the student is an MA student
         } else if ((*it)->studType() == "MA student") {
             // Add MA student to maStudents vector
             maStudents.push_back(dynamic_cast<MA&>(**it));
+        // Check if the student is a PhD student
         } else if ((*it)->studType() == "PhD student") {
             // Add PHD student to phdStudents vector
             phdStudents.push_back(dynamic_cast<PHD&>(**it));
         }
-        delete *it; // Free memory of the element in the list
+        // Free memory of the element in the list
+        delete *it; 
     }
 
-    // Sort each vector in non-descending order
-    sort(baStudents.begin(), baStudents.end());
-    sort(maStudents.begin(), maStudents.end());
-    sort(phdStudents.begin(), phdStudents.end());
+    // Sort each vector in non-descending order 
+    //the built method sorts this wau by default
+    // Sort BA students
+    sort(baStudents.begin(), baStudents.end()); 
+    // Sort MA students
+    sort(maStudents.begin(), maStudents.end()); 
+    // Sort PHD students
+    sort(phdStudents.begin(), phdStudents.end()); 
 
     // Declare queues and stack for BA, MA, PHD instances
-    queue<BA> baQueue;
-    queue<MA> maQueue;
-    stack<PHD> phdStack;
+    
+    // Queue to hold BA students
+    queue<BA> baQueue; 
+    // Queue to hold MA students
+    queue<MA> maQueue; 
+    // Stack to hold PHD students
+    stack<PHD> phdStack; 
 
     // Enqueue BA and MA instances
+    // Iterate in reverse through the baStudents vector and add each student to the queue
     for (auto it = baStudents.rbegin(); it != baStudents.rend(); ++it) {
-        baQueue.push(*it); // Add BA student to queue
+        // Add BA student to queue
+        baQueue.push(*it); 
     }
+    // Iterate in reverse through the maStudents vector and add each student to the queue
     for (auto it = maStudents.rbegin(); it != maStudents.rend(); ++it) {
-        maQueue.push(*it); // Add MA student to queue
+        // Add MA student to queue
+        maQueue.push(*it); 
     }
 
     // Push PHD instances onto stack
+    // Iterate through the phdStudents vector and add each student to the stack
     for (auto& phd : phdStudents) {
-        phdStack.push(phd); // Add PHD student to stack
+        // Add PHD student to stack
+        phdStack.push(phd); 
     }
     
     cout << "------------------------------------------------------------" << endl;
     
     // Print and remove BA students from queue
     while (!baQueue.empty()) {
-        BA student = baQueue.front(); // Get the front student
-        student.print(); // Print student details
-        baQueue.pop(); // Remove the student from the queue
+        // Get the front student
+        BA student = baQueue.front(); 
+        // Print student details
+        student.print(); 
+        // Remove the student from the queue
+        baQueue.pop(); 
     }
       
     // Print and remove MA students from queue
     while (!maQueue.empty()) {
-        MA student = maQueue.front(); // Get the front student
-        student.print(); // Print student details
-        maQueue.pop(); // Remove the student from the queue
+        // Get the front student
+        MA student = maQueue.front(); 
+        // Print student details
+        student.print(); 
+        // Remove the student from the queue
+        maQueue.pop(); 
     }
       
     // Print and remove PHD students from stack
     while (!phdStack.empty()) {
-        PHD student = phdStack.top(); // Get the top student
-        student.print(); // Print student details
-        phdStack.pop(); // Remove the student from the stack
+        // Get the top student
+        PHD student = phdStack.top(); 
+        // Print student details
+        student.print(); 
+        // Remove the student from the stack
+        phdStack.pop(); 
     }
 
     return 0; // End of the program
 }
-```
