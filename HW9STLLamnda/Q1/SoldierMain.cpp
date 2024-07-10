@@ -10,14 +10,14 @@
 using namespace std;
 
 enum option {
-    stop,                  // End program
-    addNewSoldier,         // Add new soldier
-    medalList,             // Print all soldiers entitled to a medal
-    mostSociometric,       // Find soldier with highest sociometric score
-    countMedalPrivate,     // Count private soldiers entitled to a medal
-    noCombatCommander,     // List commanders not in combat
-    overSoldier,           // Check for soldiers with more than 15 operations
-    removeOfficer          // Remove officers with 0 operations
+    stop,                  //0-End program
+    addNewSoldier,         //1-Add new soldier
+    medalList,             //2-Print all soldiers entitled to a medal
+    mostSociometric,       //3-Find soldier with highest sociometric score
+    countMedalPrivate,     //4-Count private soldiers entitled to a medal
+    noCombatCommander,     //5-List commanders not in combat
+    overSoldier,           //6-Check for soldiers with more than 15 operations
+    removeOfficer          //7-Remove officers with 0 operations
 };
 
 void addSoldier(vector<Soldier*>& soldiers);
@@ -34,18 +34,18 @@ int main() {
         while (op != stop) {
             switch (op) {
             case addNewSoldier:
-                addSoldier(soldiers);  // Add new soldier
+                addSoldier(soldiers);  
                 break;
 
             case medalList:
-                printMedalRecipients(soldiers);  // Print entitled for a medal
+                printMedalRecipients(soldiers);  
                 break;
 
             case mostSociometric:
             {
-                Officer* topOfficer = findTopSociometricOfficer(soldiers); // Find officer with most sociometric score
+                Officer* topOfficer = findTopSociometricOfficer(soldiers);
                 if (!topOfficer) {
-                    break; // No officers in the army
+                    break; 
                 }
                 cout << "Officer soldier with most sociometric score: ";
                 cout << topOfficer->getFirstName() << ' ' << topOfficer->getLastName() << endl;
@@ -54,7 +54,7 @@ int main() {
 
             case countMedalPrivate:
             {
-                cout << "number of privates that received medals: "; // Count private soldiers entitled for a medal
+                cout << "number of privates that received medals: "; 
                 cout << count_if(soldiers.begin(), soldiers.end(), [](Soldier* s) {
                     return (s->soldierType() == "private" && s->medal());
                     });
@@ -93,7 +93,7 @@ int main() {
                 for_each(soldiers.begin(), newEnd, [](Soldier* s) {
                     s->print();
                     });
-                soldiers.erase(newEnd, soldiers.end()); // Ensure to actually remove the elements
+                soldiers.erase(newEnd, soldiers.end()); 
                 break;
             }
             }
@@ -105,7 +105,7 @@ int main() {
         cout << msg << endl;
     }
 
-    // Clean up allocated memory
+    //Clean up the dynamic allocated memory
     for (Soldier* soldier : soldiers) {
         delete soldier;
     }
@@ -116,20 +116,24 @@ int main() {
 void addSoldier(vector<Soldier*>& soldiers) {
     int choice, id, numOperations, sociometricScore;
     string firstName, lastName;
-
+   //prompt for user choice
     cout << "enter 1 to add a private soldier\n";
     cout << "enter 2 to add a commander soldier\n";
     cout << "enter 3 to add a officer soldier\n";
     cin >> choice;
-
+   //no matter the choice they always input the basic four
     cout << "enter id, first name, last name and number of operations\n";
     cin >> id >> firstName >> lastName >> numOperations;
-
+    
+   //if user chose the officer
     if (choice == 3) {
         cout << "enter number of sociometric score\n";
         cin >> sociometricScore;
+        //Create a new Officer object and add it to the end of the soldiers vector
         soldiers.push_back(new Officer(id, firstName, lastName, numOperations, sociometricScore));
     }
+    
+     //if user chose the commander
     else if (choice == 2) {
         vector<int> grades(numOperations);
         cout << "enter " << numOperations << " grades\n";
@@ -139,21 +143,26 @@ void addSoldier(vector<Soldier*>& soldiers) {
         bool isCombat;
         cout << "enter 1 if the soldier is combat and 0 if not\n";
         cin >> isCombat;
+        //Create a new Commander object and add it to the end of the soldiers vector
         soldiers.push_back(new Commander(id, firstName, lastName, numOperations, grades, isCombat));
     }
+    
+    //if user chose the private
     else if (choice == 1) {
         vector<int> grades(numOperations);
         cout << "enter " << numOperations << " grades\n";
         for (int i = 0; i < numOperations; ++i) {
             cin >> grades[i];
         }
+        //Create a new PrivateSoldier object and add it to the end of the soldiers vector
         soldiers.push_back(new PrivateSoldier(id, firstName, lastName, numOperations, grades));
     }
     else {
         cout << "Invalid choice\n";
     }
 }
-
+//Simple: We check if soldier earned a medal 
+//if so: print the soldier.
 void printMedalRecipients(const vector<Soldier*>& soldiers) {
     for (const auto& soldier : soldiers) {
         if (soldier->medal()) {
@@ -163,14 +172,22 @@ void printMedalRecipients(const vector<Soldier*>& soldiers) {
 }
 
 Officer* findTopSociometricOfficer(const vector<Soldier*>& soldiers) {
+    //We initialize a ptr to the top officer and set it to initially set to nullptr
     Officer* topOfficer = nullptr;
+    //Iterate through each soldier in the vector as we look for top officer with best score
     for (const auto& soldier : soldiers) {
+        //First we Check if the soldier is of type "officer" using soldier type function
         if (soldier->soldierType() == "officer") {
+            //Cast the soldier pointer to an Officer (type) ptr
             Officer* officer = static_cast<Officer*>(soldier);
+            
+            // If topOfficer is not set or the current officer score is > curr topofficer
             if (!topOfficer || officer->getSociometricScore() > topOfficer->getSociometricScore()) {
+                //Update topOfficer to point to the current officer
                 topOfficer = officer;
             }
         }
     }
+    // Return the pointer to the top officer
     return topOfficer;
 }
