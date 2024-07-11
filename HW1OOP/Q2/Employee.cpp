@@ -1,6 +1,6 @@
 #include "Employee.h"
 
-// Constructor
+//Constructor - set to default
 Employee::Employee() {
     cout << "print: in constructor" << endl;
     workerId = 00000;
@@ -61,7 +61,14 @@ float Employee::getdonationscollected() const {
     return collectedmoney;
 }
 
-// Calculate salary
+// Calculate salary based on example given: Number of hours * Hourly wages + Percent of donations collected
+/*Donations Collected Percent Added to Salary
+Up to 1000 Shekels (inclusive) 10%
+Between 1000 Shekels and 2000 Shekels (inclusive) 15%
+Between 2000 Shekels and 4000 Shekels (inclusive) 20%
+Between 4000 Shekels and 5000 Shekels (inclusive) 30%
+More than 5000 Shekels. 40%
+*/
 float Employee::calcsalary() const {
     float bonus = 0.0;
 
