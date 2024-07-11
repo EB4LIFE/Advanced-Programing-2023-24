@@ -56,11 +56,13 @@ void Rational::print() const {
 }
 
 // Method to check equality
+//if top a and bottom a = top b and bottom b
 bool Rational::equal(const Rational other) const {
     return numerator == other.numerator && denominator == other.denominator;
 }
 
 // Method to make two rationals equal
+//setting other to value of earlier function calling object num/denom
 void Rational::makeEquals(Rational& other) {
     other.numerator = numerator;
     other.denominator = denominator;
@@ -78,14 +80,23 @@ void Rational::reduce() {
 
 // Method to add another rational
 Rational Rational::add(const Rational other) const {
+    //cross multiply
     int num = numerator * other.denominator + other.numerator * denominator;
+    //reg mul
     int den = denominator * other.denominator;
+
+    //new object with numbers with changed num/den
     Rational sum(num, den);
+
+    //reduce it 
     sum.reduce();
+
+    //return it
     return sum;
 }
 
 // Method to add one to the rational
+//same as add except instead of other vlaues just use 1 instead
 Rational Rational::addOne() const {
     int num = numerator * 1 + 1 * denominator;
     int den = denominator * 1;
