@@ -65,7 +65,10 @@ MyDate& MyDate::operator=(const MyDate& other) {
     return *this;
 }
 
-// Prefix increment
+// Prefix increment: Changes the values of the fields to the date of
+//the next day. Make sure to set correctly the day after the end of a month to the
+//beginning of the next month and the day after the end of a year to the beginning
+//of the next year.
 MyDate& MyDate::operator++() {
     int daysInMonth[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
     bool leapYear = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
@@ -85,6 +88,10 @@ MyDate& MyDate::operator++() {
 }
 
 // Postfix increment
+/*Changes the values of the fields to the date of
+the next day. Make sure to set correctly the day after the end of a month to the
+beginning of the next month and the day after the end of a year to the beginning
+of the next year.*/
 MyDate MyDate::operator++(int) {
     MyDate temp(*this);
     ++(*this);
