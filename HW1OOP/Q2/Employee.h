@@ -7,6 +7,7 @@
 using namespace std;
 
 class Employee {
+//private vars 
 private:
     int workerId;
     char workername[21];
@@ -15,7 +16,10 @@ private:
     float collectedmoney;
 
 public:
+    //ctor
     Employee();
+
+    //setters and getters
     void setWorkerId(int id);
     int getWorkerId() const;
     void setName(const char* empName);
@@ -26,6 +30,8 @@ public:
     int getHoursWorked() const;
     void setdonationscollected(float donate);
     float getdonationscollected() const;
+
+    //helper method
     float calcsalary() const;
 };
 
