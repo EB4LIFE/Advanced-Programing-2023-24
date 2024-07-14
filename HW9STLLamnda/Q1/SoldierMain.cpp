@@ -1,3 +1,5 @@
+//346816549
+//Eitan Brown -commenr for studying purposes
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -47,7 +49,7 @@ int main() {
                 if (!topOfficer) {
                     break; 
                 }
-                cout << "Officer soldier with most sociometric score: ";
+                cout << "Officer with the highest sociometric score: ";
                 cout << topOfficer->getFirstName() << ' ' << topOfficer->getLastName() << endl;
                 break;
             }
@@ -77,10 +79,10 @@ int main() {
             case overSoldier:
             {
                 if (any_of(soldiers.begin(), soldiers.end(), [](Soldier* s) { return s->getNumOperations() > 15; })) {
-                    cout << "there is a soldier that takes more than 15 operations\n";
+                    cout << "there is at least one soldier that did more than 15 operations\n";
                 }
                 else {
-                    cout << "no soldier takes more than 15 operations\n";
+                    cout << "no soldier did more than 15 operations\n";
                 }
                 break;
             }
@@ -117,9 +119,10 @@ void addSoldier(vector<Soldier*>& soldiers) {
     int choice, id, numOperations, sociometricScore;
     string firstName, lastName;
    //prompt for user choice
-    cout << "enter 1 to add a private soldier\n";
-    cout << "enter 2 to add a commander soldier\n";
-    cout << "enter 3 to add a officer soldier\n";
+    cout << "choose a soldier\n";
+    cout << "enter 1 to add a private\n";
+    cout << "enter 2 to add a commander\n";
+    cout << "enter 3 to add an officer\n";
     cin >> choice;
    //no matter the choice they always input the basic four
     cout << "enter id, first name, last name and number of operations\n";
@@ -127,7 +130,7 @@ void addSoldier(vector<Soldier*>& soldiers) {
     
    //if user chose the officer
     if (choice == 3) {
-        cout << "enter number of sociometric score\n";
+        cout << "enter the sociometric score\n";
         cin >> sociometricScore;
         //Create a new Officer object and add it to the end of the soldiers vector
         soldiers.push_back(new Officer(id, firstName, lastName, numOperations, sociometricScore));
@@ -135,10 +138,13 @@ void addSoldier(vector<Soldier*>& soldiers) {
     
      //if user chose the commander
     else if (choice == 2) {
-        vector<int> grades(numOperations);
+        vector<int> grades;
+        if (numOperations > 0) {
+        grades.resize(numOperations);
         cout << "enter " << numOperations << " grades\n";
         for (int i = 0; i < numOperations; ++i) {
             cin >> grades[i];
+        }
         }
         bool isCombat;
         cout << "enter 1 if the soldier is combat and 0 if not\n";
@@ -149,10 +155,13 @@ void addSoldier(vector<Soldier*>& soldiers) {
     
     //if user chose the private
     else if (choice == 1) {
-        vector<int> grades(numOperations);
+        vector<int> grades;
+        if (numOperations > 0) {
+        grades.resize(numOperations);
         cout << "enter " << numOperations << " grades\n";
         for (int i = 0; i < numOperations; ++i) {
             cin >> grades[i];
+        }
         }
         //Create a new PrivateSoldier object and add it to the end of the soldiers vector
         soldiers.push_back(new PrivateSoldier(id, firstName, lastName, numOperations, grades));
