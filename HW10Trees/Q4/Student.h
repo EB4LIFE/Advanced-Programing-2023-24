@@ -1,3 +1,5 @@
+
+
 #ifndef STUDENT_H
 #define STUDENT_H
 
@@ -20,6 +22,9 @@ public:
 
     Student& operator=(const Student& other);
     Student& operator=(Student&& other) noexcept;
+
+   bool operator<(const Student& other) const;
+   bool operator>(const Student& other) const;
 
     bool operator<=(const Student& other) const;
     bool operator==(const Student& other) const;
