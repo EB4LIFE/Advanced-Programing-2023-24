@@ -9,8 +9,8 @@ int main()
 	int x,y;
 	for (int i=0;i<10; i++)
 	{
-		//cin>>x;
-		T1.add(rand()%10);
+		cin>>y;
+		T1.add(y);
 	}
 	cout<<"inorder: ";
 	T1.inOrder();
@@ -32,7 +32,7 @@ int main()
 			break;
 		case 4: cout<<"# left sons only: "<<T1.onlyLeftSon()<<endl;
 			break;
-		case 5: cout<<"enter a number ";
+		case 5: cout<<"enter a number "<<endl;
 			cin>>y;
 			cout<<"level of "<<y<<" on tree: "<<T1.level(y)<<endl;
 			break;
