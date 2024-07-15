@@ -1,3 +1,4 @@
+
 #include "Student.h"
 
 // Default constructor
@@ -38,6 +39,17 @@ Student& Student::operator=(Student&& other) noexcept {
     }
     return *this;
 }
+
+//operator <
+bool Student::operator<(const Student& other) const {
+        return this->id < other.id; 
+    }
+
+//operator > 
+bool Student::operator>(const Student& other) const {
+        return this->id > other.id; 
+    }
+
 
 // Operator<=
 bool Student::operator<=(const Student& other) const {
